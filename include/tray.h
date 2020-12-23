@@ -1,7 +1,7 @@
 /*
  * This file is part of budgie-desktop
  *
- * Copyright © 2015-2020 Budgie Desktop Developers
+ * Copyright © 2020 Budgie Desktop Developers
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -12,47 +12,48 @@
 #ifndef __CARBON_TRAY_H__
 #define __CARBON_TRAY_H__
 
+#include "child.h"
+#include <X11/Xatom.h>
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
-#include <X11/Xatom.h>
 #include <stdbool.h>
-#include "child.h"
 
 typedef struct {
 	GObject parent_instance;
 
-	GtkWidget *box;
+	GtkWidget* box;
 	int iconSize;
+	bool supportsComposite;
 
-	GHashTable *socketTable;
-	GtkWidget *invisible;
+	GHashTable* socketTable;
+	GtkWidget* invisible;
 
 	GdkAtom selectionAtom;
 	Atom opcodeAtom;
 	Atom dataAtom;
-	GSList *messages;
+	GSList* messages;
 } CarbonTray;
 
 typedef struct {
 	GObjectClass parent_class;
 
-	void (*message_sent)(CarbonTray *tray, CarbonChild *child, char *message, long id, long timeout);
+	void (*message_sent)(CarbonTray* tray, CarbonChild* child, char* message, long id, long timeout);
 } CarbonTrayClass;
 
 typedef struct {
-    char *string;
+	char* string;
 
-    long id;
-    long length;
-    long remainingLength;
-    long timeout;
+	long id;
+	long length;
+	long remainingLength;
+	long timeout;
 
-    Window window;
+	Window window;
 } CarbonMessage;
 
 typedef struct {
-	GtkWidget *box;
-	cairo_t *cr;
+	GtkWidget* box;
+	cairo_t* cr;
 } CarbonDrawData;
 
 

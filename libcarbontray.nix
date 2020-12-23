@@ -22,5 +22,6 @@ stdenv.mkDerivation {
   buildInputs = [
     gtk3
     xorg.libX11
+    xorg.libXcomposite
   ];
 }

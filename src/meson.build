@@ -3,6 +3,7 @@ gnome = import('gnome')
 libcarbontray_deps = [
     dependency('gtk+-x11-3.0')
   , dependency('x11')
+  , dependency('xcomposite')
 ]
 
 libcarbontray_sources = [
